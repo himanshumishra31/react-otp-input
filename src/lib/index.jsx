@@ -89,7 +89,7 @@ class SingleOtpInput extends PureComponent<*> {
         <input
           style={Object.assign(
             { width: '1em', textAlign: 'center' },
-            inputStyle,
+            isStyleObject(inputStyle) && inputStyle,
             focus && isStyleObject(focusStyle) && focusStyle,
             isDisabled && isStyleObject(disabledStyle) && disabledStyle,
             hasErrored && isStyleObject(errorStyle) && errorStyle
@@ -97,7 +97,8 @@ class SingleOtpInput extends PureComponent<*> {
           className={this.getClasses(
             focus && focusStyle,
             isDisabled && disabledStyle,
-            hasErrored && errorStyle
+            hasErrored && errorStyle,
+            !isStyleObject(inputStyle) && inputStyle
           )}
           type={isInputNum ? 'number' : 'tel'}
           {...numValueLimits}
